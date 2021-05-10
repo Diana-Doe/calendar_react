@@ -1,0 +1,28 @@
+.loginWrapper {
+    grid-area: a;
+    align-self: center;
+    justify-self: center;
+    min-width: 300px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 4px;
+}
+
+.loginForm {
+    display: grid;
+    grid-template-areas:
+    "label input"
+    "label input";
+
+    row-gap: 5px;
+    grid-template-rows: 30px 30px;
+    grid-template-columns: minmax(50px, 100px) minmax(100px, 200);
+}
+
+.label {
+    grid-area: label;
+}
+
+.input {
+    grid-area: input;
+}
