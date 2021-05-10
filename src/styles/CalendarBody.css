@@ -1,0 +1,46 @@
+.Calendar-body__day-name {
+    width: 14%;
+    height: 22px;
+    text-align: center;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    float: left;
+    padding-top: 2px;
+    box-sizing: border-box;
+    color: white;
+    font-weight: bold;
+    font-size: 13px;
+    margin: 0 0.5px;
+    background-color: #9557f9;
+    
+}
+
+.Calendar-body__date {
+    width: 14%;
+    height: auto;
+    border: 3px solid #b1f4f5f0;
+    border-radius: 5px;
+    float: left;
+    box-sizing: border-box;
+    color: #9557f9;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 0 0 6% 0.3%;
+    background-color: #b1f4f5f0;
+    margin: 0.5px;
+}
+
+.Calendar-body__date_today {
+    background-color: #9557f9;
+    border: 3px solid #9557f9;
+    color: white;
+}
+
+.Calendar-body__date_disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+.Calendar-body__month {
+    min-height: 400px;
+}
