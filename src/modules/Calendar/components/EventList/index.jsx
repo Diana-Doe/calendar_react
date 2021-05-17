@@ -34,7 +34,7 @@ class CalendarEvents extends Component {
     render() {
         return <div className={"Calendar-events"}>
             <span id="Calendar-events-header">EVENTS</span>
-            <Link to="/addEvent" classname="button_add">add event</Link>
+            <Link to="/addEvent" id="button_add">add event</Link>
             {this.getData()}
         </div>
     }

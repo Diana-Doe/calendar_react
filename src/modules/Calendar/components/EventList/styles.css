@@ -1,3 +1,19 @@
+#Calendar-events-header {
+    font-size:x-large;
+    color:#9557f9;
+}
+
+#button_add {
+    margin-left: 50%;
+    padding: 5px;
+    color:white;
+    background-color: #9557f9;
+    border: 1.5px solid #420c99;
+    border-radius: 5px;
+    text-decoration:none;
+    
+}
+
 .Low {
     background-color: #37e27ff0;
     color:white;

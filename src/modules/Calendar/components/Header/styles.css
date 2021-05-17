@@ -4,10 +4,12 @@
   text-align: center;
   color: #9557f9;
   font-weight: bold;
+  margin-top: 10px;
 }
 
 .Calendar-header__button {
     width: 30%;
+    padding-top: 0.5px;
     border: none;
     color: transparent;
     margin: 4px;
