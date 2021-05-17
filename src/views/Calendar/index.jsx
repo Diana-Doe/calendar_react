@@ -1,6 +1,7 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import CalendarHeader from "../../modules/Calendar/components/Header"
 import CalendarBody from "../../modules/Calendar/components/Body"
+import CalendarEvents from "../../modules/Calendar/components/EventList"
 import "./styles.css";
 
 class Layout extends Component {
@@ -8,11 +9,13 @@ class Layout extends Component {
         super(props);
         const date = new Date();
         this.state = {
+            selectedDate: date.getFullYear() + "-" + parseInt(date.getMonth() + 1) + "-" + date.getDate(),
             month: date.getMonth(),
             year: date.getFullYear()
         };
         this.clickBack = this.clickBack.bind(this);
         this.clickNext = this.clickNext.bind(this);
+        this.onDayClick = this.onDayClick.bind(this);
         this.changeCalendarHeader = this.changeCalendarHeader.bind(this);
     }
 
@@ -24,6 +27,15 @@ class Layout extends Component {
     clickNext(e) {
         e.preventDefault();
         this.changeCalendarHeader(11, 0, 1)
+    }
+
+
+    onDayClick = day => e => {
+        e.preventDefault();
+        let tempState = this.state;
+        tempState.selectedDate = this.state.year.toString() + '-' + (this.state.month + 1) + '-' + day
+        console.log('hello world', tempState.selectedDate);
+        this.setState(tempState);
     }
 
     changeCalendarHeader(ifValue, newMonthValue, move) {
@@ -39,15 +51,24 @@ class Layout extends Component {
 
     render() {
         return (
-            <div>
-                <CalendarHeader
-                    clickBack={this.clickBack}
-                    clickNext={this.clickNext}
-                    month={this.state.month}
-                    year={this.state.year}
-                />
-                <CalendarBody month={this.state.month} year={this.state.year}/>
-            </div>
+            <section>
+                <div>
+                    <CalendarHeader
+                        clickBack={this.clickBack}
+                        clickNext={this.clickNext}
+                        month={this.state.month}
+                        year={this.state.year}
+                    />
+                    <CalendarBody
+                        onDayClick={this.onDayClick}
+                        month={this.state.month}
+                        year={this.state.year}
+                    />
+                    <CalendarEvents
+                        selectedDate={this.state.selectedDate}
+                    />
+                </div>
+            </section>
         );
     }
 

@@ -4,7 +4,9 @@ import "./styles.css";
 import { DAY_NAMES } from '../constants';
 import {getCalendarArray} from '../helper';
 
+
 class CalendarBody extends Component {
+    
     get calendarArray() {
         const { month, year } = this.props;
         return getCalendarArray(month, year);
@@ -19,7 +21,7 @@ class CalendarBody extends Component {
             {_.map(this.calendarArray, (w, i) =>
                 <div key={i.toString()} className={"Calendar-body__week"}>
                     {_.map(w, (d, i) =>
-                        <time key={i.toString()} className={`Calendar-body__date ${d[1]}`}>{d[0]}</time>)
+                        <div key={i.toString()} onClick={this.props.onDayClick(d[0])} className={`Calendar-body__date ${d[1]}`}>{d[0]}</div>)
                     }
                 </div>)
             }
