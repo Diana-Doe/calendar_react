@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import LoginForm from "./LoginForm.js";
-import styles from "../styles/LoginView.css";
+import LoginForm from "../../modules/Authorization/components/LoginForm/index.jsx";
+import styles from "./styles.css";
 
 const useStyles = makeStyles((theme) => ({
   container: {

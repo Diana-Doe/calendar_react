@@ -1,7 +1,7 @@
 import React, {Component} from "react";
-import CalendarHeader from "./CalendarHeader"
-import CalendarBody from "./CalendarBody"
-import "../styles/Layout.css";
+import CalendarHeader from "../../modules/Calendar/components/Header"
+import CalendarBody from "../../modules/Calendar/components/Body"
+import "./styles.css";
 
 class Layout extends Component {
     constructor(props) {

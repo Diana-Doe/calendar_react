@@ -15,13 +15,13 @@
 }
 
 .Calendar-header__button_back {
-    background: url("../images/left.jpg") no-repeat right;
+    background: url("../../../../images/left.jpg") no-repeat right;
     background-size: 19px 19px;
     float: left;
 }
 
 .Calendar-header__button_next {
-    background: url("../images/right.jpg") no-repeat left;
+    background: url("../../../../images/right.jpg") no-repeat left;
     background-size: 19px 19px;
     float: right;
 }

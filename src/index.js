@@ -2,8 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import LoginView from "./components/LoginView.js";
-import Layout from "./components/Layout.jsx"
+import LoginView from "./views/LoginView/index.jsx";
+import Layout from "./views/Calendar/index.jsx"
 
 ReactDOM.render(
   <React.StrictMode>

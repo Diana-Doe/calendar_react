@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import _ from "lodash";
-import "../styles/CalendarBody.css";
+import "./styles.css";
 import { DAY_NAMES } from '../constants';
 import {getCalendarArray} from '../helper';
 

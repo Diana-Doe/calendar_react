@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import "../styles/CalendarHeader.css";
+import "./styles.css";
 import {MONTHS} from "../constants";
 
 class CalendarHeader extends Component {
