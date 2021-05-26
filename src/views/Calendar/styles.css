@@ -1,5 +1,10 @@
 #root {
-    width: 80%;
+    width: 100%;
     margin: auto;
     font-family:cursive;
+}
+
+.calendar {
+    width: 80%;
+    margin: auto;
 }

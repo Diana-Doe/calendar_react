@@ -3,6 +3,15 @@
         "2021-5-15": {
             "events": [
                 {
+                    "id": "event1User2",
+                    "title": "Super Event 2021",
+                    "timeRange": {
+                        "startTime": "14:00",
+                        "endTime": "16:00"
+                    },
+                    "importance": "Medium"
+                },
+                {
                     "id": "event1User1",
                     "title": "Shashlyk",
                     "timeRange": {

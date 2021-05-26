@@ -106,7 +106,7 @@ const AddEvent = () => {
                 <Grid item xs={12}>
                     <ThemeProvider theme={theme}>
                         <Button
-                            color="primary"
+                            color="#9557f9"
                             fullWidth
                             type="submit"
                             variant="contained"

@@ -51,7 +51,7 @@ class Layout extends Component {
 
     render() {
         return (
-            <section>
+            <section class="calendar">
                 <div>
                     <CalendarHeader
                         clickBack={this.clickBack}

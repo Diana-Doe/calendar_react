@@ -1,10 +1,10 @@
 .Calendar-header {
-  height: 24px;
+  /* height: 24px; */
   padding: 10px 0;
   text-align: center;
   color: #9557f9;
   font-weight: bold;
-  margin-top: 10px;
+  font-size: 22px;
 }
 
 .Calendar-header__button {

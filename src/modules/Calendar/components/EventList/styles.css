@@ -1,6 +1,7 @@
 #Calendar-events-header {
     font-size:x-large;
     color:#9557f9;
+    padding-bottom: 1000px;
 }
 
 #button_add {
@@ -11,20 +12,39 @@
     border: 1.5px solid #420c99;
     border-radius: 5px;
     text-decoration:none;
-    
+    font-size: 20px;
+    margin-bottom: 100px;
+}
+
+.Calendar-events-title {
+    font-size: 18px;
+    display:inline-flex;
+}
+
+.Calendar-events-time {
+    font-size: 15px;
+    display:inline-flex;
+    padding-left: 50px;
+    padding-bottom: 15px;
 }
 
 .Low {
     background-color: #37e27ff0;
     color:white;
+    border-radius: 50px;
+    margin-top: 20px; 
 }
 
 .Medium {
     background-color: #85e6e7;
-    color:white
+    color:white;
+    border-radius: 50px;
+    margin-top: 20px;
 }
 
 .High {
     background-color: #9557f9;
-    color:white
+    color:white;
+    border-radius: 50px;
+    margin-top: 20px;
 }
