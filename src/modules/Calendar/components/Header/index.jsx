@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import "./styles.css";
 import {MONTHS} from "../constants";
+import {leftArrow, rightArrow} from "../../../../images";
 
 class CalendarHeader extends Component {
     render() {
@@ -9,18 +10,18 @@ class CalendarHeader extends Component {
             <form className="Calendar-header">
                 <button
                     onClick={this.props.clickBack}
-                    className="Calendar-header__button Calendar-header__button_back"
+                    className="Calendar-header__button"
                 >
-                    left
+                    <img src={leftArrow} className="Calendar-header__button_img" />
                 </button>
 
-                <span>{MONTHS[month]} {year}</span>
+                <div className="Calendar-header__title">{MONTHS[month]} {year}</div>
 
                 <button
                     onClick={this.props.clickNext}
-                    className="Calendar-header__button Calendar-header__button_next"
+                    className="Calendar-header__button"
                 >
-                    right
+                    <img src={rightArrow} className="Calendar-header__button_img" />
                 </button>
             </form>
         );

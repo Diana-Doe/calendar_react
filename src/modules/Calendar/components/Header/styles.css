@@ -1,29 +1,32 @@
 .Calendar-header {
-  /* height: 24px; */
-  padding: 10px 0;
-  text-align: center;
-  color: #9557f9;
-  font-weight: bold;
-  font-size: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 50%;
+}
+
+.Calendar-header__title {
+    padding: 10px 0;
+    text-align: center;
+    color: #9557f9;
+    font-weight: bold;
+    font-size: 22px;
 }
 
 .Calendar-header__button {
-    width: 30%;
     padding-top: 0.5px;
     border: none;
-    color: transparent;
+    background-color: transparent;
     margin: 4px;
     cursor: pointer;
 }
 
-.Calendar-header__button_back {
-    background: url("../../../../images/left.jpg") no-repeat right;
-    background-size: 19px 19px;
-    float: left;
+.Calendar-header__button_img {
+    width: 19px;
 }
 
-.Calendar-header__button_next {
+/* .Calendar-header__button_next {
     background: url("../../../../images/right.jpg") no-repeat left;
     background-size: 19px 19px;
     float: right;
-}
+} */

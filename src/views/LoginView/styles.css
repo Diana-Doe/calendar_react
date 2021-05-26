@@ -41,17 +41,3 @@ margin-top: -15px;
 font-size: 14px;
 margin-bottom: 20px;
 }
-
-button {
-padding: 10px 15px;
-background-color:#9557f9;
-color: white;
-border: 1px solid #9557f9;
-transition: ease-in-out background-color 250ms, ease-in-out color 250ms;
-}
-
-button:hover {
-cursor: pointer;
-background-color: white;
-color:#b78bff;
-}

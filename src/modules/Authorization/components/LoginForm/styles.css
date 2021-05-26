@@ -1,0 +1,14 @@
+.LoginForm__button {
+    padding: 10px 15px;
+    margin-right: 4px;
+    background-color:#9557f9;
+    color: white;
+    border: 1px solid #9557f9;
+    transition: ease-in-out background-color 250ms, ease-in-out color 250ms;
+}
+
+.LoginForm__button:hover {
+    cursor: pointer;
+    background-color: white;
+    color:#b78bff;
+}

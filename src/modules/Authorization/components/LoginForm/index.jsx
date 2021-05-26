@@ -5,6 +5,7 @@ import yellow from "@material-ui/core/colors/yellow"
 import React from "react";
 
 import * as obj from '../../../../data/users.json';
+import "./styles.css";
 
 String.prototype.hashCode = function() {
   var hash = 0, i, chr;
@@ -33,7 +34,7 @@ function LoginButton(props) {
     };
   
   return (
-    <button type="button" onClick={() => {loginHandler(props)}}>Log in</button>
+    <button className="LoginForm__button" onClick={() => {loginHandler(props)}}>Log in</button>
   );
 }
 
@@ -55,7 +56,7 @@ function RegisterButton(props) {
     };
   
   return (
-    <button type="button" onClick={() => {registerHandler(props)}}>Register</button>
+    <button className="LoginForm__button" onClick={() => {registerHandler(props)}}>Register</button>
   );
 }
 
