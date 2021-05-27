@@ -7,16 +7,26 @@ import React from "react";
 import * as obj from '../../../../data/users.json';
 import "./styles.css";
 
-String.prototype.hashCode = function() {
-  var hash = 0, i, chr;
-  if (this.length === 0) return hash;
-  for (i = 0; i < this.length; i++) {
-    chr   = this.charCodeAt(i);
-    hash  = ((hash << 5) - hash) + chr;
-    hash |= 0; // Convert to 32bit integer
+function stringToHash(string) {
+                  
+  var hash = 0;
+    
+  if (string.length === 0) return hash;
+  var char = '';
+    
+  for (let i = 0; i < string.length; i++) {
+      char = string.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash = hash & hash;
   }
+    
   return hash;
-};
+}
+
+function validateEmail(email) {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(String(email).toLowerCase());
+}
 
 const theme = createMuiTheme({ palette: { primary: yellow } })
 
@@ -26,9 +36,12 @@ function LoginButton(props) {
 
   function loginHandler(props) {
       const id = props.id
-      const error = props.errors.password
+      console.log(props)
+      const error = props.errors?.password
+      console.log("hello");
       console.log(error)
-      if (id !== '-1' && error === ''){
+      if (id !== '-1' && error === undefined){
+        console.log(id);
       history.replace("/mycalendar/"+id);
       }
     };
@@ -44,13 +57,35 @@ function RegisterButton(props) {
   let history = useHistory();
 
   function registerHandler(props) {
-      const id = String.prototype.hashCode(props.email);
+
+      if (validateEmail(props.email) === false) {
+        return (
+          <button className="LoginForm__button" onClick={() => {console.log("can not register1")}}>Register</button>
+        );;
+      }
+
+      for (let m in obj.default){
+        if (obj.default[m].email === props.email){
+  
+          return (
+            <button className="LoginForm__button" onClick={() => {console.log("can not register2")}}>Register</button>
+          );;
+        } 
+      }
+
+      const id = stringToHash(props.email);
+      
       obj.default.push({ "id": id,
         "email": props.email,
         "password":props.password,
-        "name": "Big",
-        "surname": "Anya"})
+        "name": "default",
+        "surname": "default"})
+
+      console.log("registered")
       console.log(obj)
+      
+      JSON.stringify()
+      console.log(id);
       history.replace("/mycalendar/"+id);
 
     };
@@ -94,9 +129,7 @@ handleChange(ev) {
   validate(ev) {
     const { name, value} = ev.target;
     switch (name){
-      
       case "email":{
-        console.log("!!!!", value)
         let isFound = false;
         for (let m in obj.default){
           if (obj.default[m].email === value){
@@ -115,7 +148,6 @@ handleChange(ev) {
         }
       } break;
       case "password": {
-        console.log("&&&&", this.state);
         if(this.state.errors.email === "") {
 
           if(!(value === this.userpass)) {
@@ -124,7 +156,6 @@ handleChange(ev) {
            this.setState({password: "-1"})
           }
           else {
-            console.log("!")
             this.setState({errors: {...this.state.errors, password:""}})
             
             this.setState({id: this.userid})
@@ -139,7 +170,7 @@ handleChange(ev) {
 onSubmit(event){
   event.preventDefault();
   const {errors } = this.state;
-  if (errors.email || errors.password){
+  if (errors?.email || errors?.password){
     console.log("invalid form")
   }
   console.log("submit", this.state, event)

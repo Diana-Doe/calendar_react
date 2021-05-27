@@ -1,21 +1,43 @@
-import React, { Component } from "react";
+import React, { useState, Component } from "react";
 import "./styles.css";
 import eventsData from '../../../../data/index.json';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import AddEvent from "../../../AddEvent";
+import { Button } from "@material-ui/core";
 
 
-class CalendarEvents extends Component {
-    states = {
+const initState = [
+    {
+        id: 1,
+        title: "title1",
+        description: "description1",
+        type: "personal",
+    },
+    {
+        id: 2,
+        title: "title2",
+        description: "description2",
+        type: "work",
+    },
+    {
+        id: 3,
+        title: "title3",
+        description: "description3",
+        type: "study",
+    },
+];
+
+const CalendarEvents = (selectedDate) => {
+    const [ open, setOpen ] = useState(false);
+    const states = {
         eventsData: null
     }
 
-    getData() {
-        const { selectedDate } = this.props;
+    const getData = () => {
         const user = 1;
-        console.log(this.props)
-        this.states.eventsData = eventsData[user][selectedDate];
-        if (this.states.eventsData !== undefined) {
-            return this.states.eventsData.events.map(item => (
+        states.eventsData = eventsData[user][selectedDate.selectedDate];
+        if (states.eventsData !== undefined) {
+            return states.eventsData.events.map(item => (
                 <div key={item.id} className={item.importance}>
                     <div className="Calendar-events-title">{item.title}</div>
                     <div className="Calendar-events-time">{item.timeRange.startTime} - {item.timeRange.endTime}</div>
@@ -26,18 +48,37 @@ class CalendarEvents extends Component {
     }
 
 
-    addEvent(e) {
-        e.preventDefault();
-        console.log('hello world');
+    // const addEvent = (e) => {
+    //     e.preventDefault();
+    //     console.log('hello world');
+    // }
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
     }
 
-    render() {
-        return <div className={"Calendar-events"}>
-            <span id="Calendar-events-header">EVENTS</span>
-            <Link to="/addEvent" id="button_add">add event</Link>
-            {this.getData()}
-        </div>
-    }
+    return <div className={"Calendar-events"}>
+        <span id="Calendar-events-header">EVENTS {selectedDate.selectedDate}</span>
+        {/* <Link to="/addEvent" id="button_add">add event</Link> */}
+        <Button
+            color="primary"
+            fullWidth
+            variant="contained"
+            class="LoginForm__button"
+            onClick={handleClickOpen}
+        >
+            ADD EVENT
+          </Button>
+        <AddEvent
+            open={open}
+            handleClose={handleClose}
+        />
+        {getData()}
+    </div>
 }
 
 export default CalendarEvents;
