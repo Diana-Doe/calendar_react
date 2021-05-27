@@ -6,27 +6,6 @@ import AddEvent from "../../../AddEvent";
 import { Button } from "@material-ui/core";
 
 
-const initState = [
-    {
-        id: 1,
-        title: "title1",
-        description: "description1",
-        type: "personal",
-    },
-    {
-        id: 2,
-        title: "title2",
-        description: "description2",
-        type: "work",
-    },
-    {
-        id: 3,
-        title: "title3",
-        description: "description3",
-        type: "study",
-    },
-];
-
 const CalendarEvents = (selectedDate) => {
     const [ open, setOpen ] = useState(false);
     const states = {

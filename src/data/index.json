@@ -3,7 +3,7 @@
         "2021-5-15": {
             "events": [
                 {
-                    "id": "event1User2",
+                    "id": "1",
                     "title": "Super Event 2021",
                     "timeRange": {
                         "startTime": "14:00",
@@ -12,7 +12,7 @@
                     "importance": "Medium"
                 },
                 {
-                    "id": "event1User1",
+                    "id": "2",
                     "title": "Shashlyk",
                     "timeRange": {
                         "startTime": "14:00",
@@ -21,7 +21,7 @@
                     "importance": "High"
                 },
                 {
-                    "id": "event2User1",
+                    "id": "3",
                     "title": "Yroku",
                     "timeRange": {
                         "startTime": "10:00",
@@ -34,7 +34,7 @@
         "2021-5-10": {
             "events": [
                 {
-                    "id": "event1User2",
+                    "id": "1",
                     "title": "Super Event 2021",
                     "timeRange": {
                         "startTime": "14:00",
@@ -49,7 +49,7 @@
         "2021-5-10": {
             "events": [
                 {
-                    "id": "event1User2",
+                    "id": "1",
                     "title": "Super Event 2021",
                     "timeRange": {
                         "startTime": "14:00",

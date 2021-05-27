@@ -8,9 +8,10 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import FormGroup from "@material-ui/core/FormGroup";
 import { useForm, Controller } from "react-hook-form";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
-import * as obj from '../../data/index.json';
+// import { ADD_EVENT } from "../actions/actionTypes"
+// import * as obj from '../../data/index.json';
 
 
 const importances = [
@@ -33,28 +34,10 @@ const AddEvent = ({ open, handleClose }) => {
     const { control, handleSubmit, getValues, errors } = useForm();
     // const dispatch = useDispatch();
 
-    const addHandler = () => {
-        console.log("adding event");
-        // const event_name = document.getElementById("event_name").value;
-        // const start_time = document.getElementById("datetime-start").value;
-        // const end_time = document.getElementById("datetime-end").value;
-        // history.replace("/mycalendar");
-        // obj.default.push({ "id": id,
-        //     "email": props.email,
-        //     "password":props.password,
-        //     "name": "default",
-        //     "surname": "default"})
-
-        //   console.log("registered")
-        //   console.log(obj)
-
-        //   JSON.stringify()
-    };
-
     const onSubmit = () => {
         if (!errors) {
             const values = getValues();
-            // dispatch(addHandler());
+            // dispatch({ type: ADD_EVENT, payload: values });
 
             handleClose();
         }

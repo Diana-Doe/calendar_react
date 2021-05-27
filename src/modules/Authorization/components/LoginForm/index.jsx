@@ -36,12 +36,9 @@ function LoginButton(props) {
 
   function loginHandler(props) {
       const id = props.id
-      console.log(props)
-      const error = props.errors?.password
-      console.log("hello");
+      const error = props.errors.password
       console.log(error)
-      if (id !== '-1' && error === undefined){
-        console.log(id);
+      if (id !== '-1' && error === ''){
       history.replace("/mycalendar/"+id);
       }
     };
@@ -85,7 +82,7 @@ function RegisterButton(props) {
       console.log(obj)
       
       JSON.stringify()
-      console.log(id);
+
       history.replace("/mycalendar/"+id);
 
     };
@@ -170,7 +167,7 @@ handleChange(ev) {
 onSubmit(event){
   event.preventDefault();
   const {errors } = this.state;
-  if (errors?.email || errors?.password){
+  if (errors.email || errors.password){
     console.log("invalid form")
   }
   console.log("submit", this.state, event)
