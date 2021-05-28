@@ -1,0 +1,60 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "email":"test@test",
+            "password":"111"
+        },
+        {
+            "id": 2,
+            "email":"test1@test",
+            "password":"111"
+        }
+    ],
+    "events": [
+        {
+            "id": "1",
+            "userId": "1",
+            "date": "2021-5-10",
+            "title": "Super Event 2021",
+            "timeRange": {
+                "startTime": "14:00",
+                "endTime": "16:00"
+            },
+            "importance": "Medium"
+        },
+        {
+            "id": "2",
+            "userId": "1",
+            "date": "2021-5-10",
+            "title": "Shashlyk",
+            "timeRange": {
+                "startTime": "14:00",
+                "endTime": "19:00"
+            },
+            "importance": "High"
+        },
+        {
+            "id": "3",
+            "userId": "1",
+            "date": "2021-5-10",
+            "title": "Yroku",
+            "timeRange": {
+                "startTime": "10:00",
+                "endTime": "13:30"
+            },
+            "importance": "Low"
+        },
+        {
+            "id": "4",
+            "userId": "2",
+            "date": "2021-5-12",
+            "title": "Super Event 2021",
+            "timeRange": {
+                "startTime": "14:00",
+                "endTime": "16:00"
+            },
+            "importance": "Medium"
+        }
+    ]
+}
