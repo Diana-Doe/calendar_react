@@ -1,12 +1,12 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import _ from "lodash";
 import "./styles.css";
 import { DAY_NAMES } from '../constants';
-import {getCalendarArray} from '../helper';
+import { getCalendarArray } from '../helper';
 
 
 class CalendarBody extends Component {
-    
+
     get calendarArray() {
         const { month, year } = this.props;
         return getCalendarArray(month, year);
@@ -32,6 +32,15 @@ class CalendarBody extends Component {
         return <div className={"Calendar-body"}>
             {this.renderDayNames()}
             {this.renderCalendarBody()}
+            <button
+                // color="primary"
+                fullWidth
+                variant="contained"
+                class="today__button"
+                onClick={this.props.onToday}
+            >
+                TODAY
+            </button>
         </div>
     }
 

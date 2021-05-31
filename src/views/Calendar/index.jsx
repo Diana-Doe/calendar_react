@@ -9,18 +9,14 @@ class Layout extends Component {
     super(props);
     const date = new Date();
     this.state = {
-      selectedDate:
-        date.getFullYear() +
-        "-" +
-        parseInt(date.getMonth() + 1) +
-        "-" +
-        date.getDate(),
-      month: date.getMonth(),
       year: date.getFullYear(),
+      month: date.getMonth(),
+      day: date.getDate(),
     };
     this.clickBack = this.clickBack.bind(this);
     this.clickNext = this.clickNext.bind(this);
     this.onDayClick = this.onDayClick.bind(this);
+    this.onToday = this.onToday.bind(this);
     this.changeCalendarHeader = this.changeCalendarHeader.bind(this);
   }
 
@@ -37,11 +33,19 @@ class Layout extends Component {
   onDayClick = (day) => (e) => {
     e.preventDefault();
     let tempState = this.state;
-    tempState.selectedDate =
-      this.state.year.toString() + "-" + (this.state.month + 1) + "-" + day;
-    console.log("hello world", tempState.selectedDate);
+    tempState.day = day;
     this.setState(tempState);
   };
+
+  onToday(e) {
+    e.preventDefault();
+    const today = new Date();
+    let tempState = this.state;
+    tempState.year = today.getFullYear();
+    tempState.month = today.getMonth();
+    tempState.day = today.getDate();
+    this.setState(tempState);
+  }
 
   changeCalendarHeader(ifValue, newMonthValue, move) {
     let tempState = this.state;
@@ -63,12 +67,18 @@ class Layout extends Component {
             month={this.state.month}
             year={this.state.year}
           />
+
           <CalendarBody
             onDayClick={this.onDayClick}
+            onToday={this.onToday}
             month={this.state.month}
             year={this.state.year}
           />
-          <CalendarEvents selectedDate={this.state.selectedDate} />
+          <CalendarEvents
+            year={this.state.year}
+            month={this.state.month}
+            day={this.state.day}
+          />
         </div>
       </section>
     );

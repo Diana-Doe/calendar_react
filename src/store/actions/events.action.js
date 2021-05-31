@@ -1,8 +1,8 @@
 import * as actionTypes from '../actionTypes';
 import { eventsApi } from '../api';
 
-export const getEvents = (userId) => dispatch => {
-    return eventsApi.getEvents(userId)
+export const getEvents = (userId, year, month) => dispatch => {
+    return eventsApi.getEvents(userId, year, month)
         .then((res) => {
             dispatch({
                 type: actionTypes.GET_EVENTS,

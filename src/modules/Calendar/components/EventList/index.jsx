@@ -1,42 +1,20 @@
 import React, { useState, Component, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "./styles.css";
-import eventsData from "../../../../data/index.json";
 import AddEvent from "../../../AddEvent";
 import { Button } from "@material-ui/core";
 import { eventsActions } from "../../../../store/actions";
+import { eventsSelectors } from "../../../../store/selectors";
+import { MONTHS } from "../constants";
 
-const CalendarEvents = (selectedDate) => {
+const CalendarEvents = (props) => {
+  const items = useSelector(eventsSelectors.getAllEvents);
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
-  const states = {
-    eventsData: null,
-  };
 
   useEffect(() => {
-    dispatch(eventsActions.getEvents(1));
-  }, []);
-
-  const getData = () => {
-    const user = 1;
-    states.eventsData = eventsData[user][selectedDate.selectedDate];
-    if (states.eventsData !== undefined) {
-      return states.eventsData.events.map((item) => (
-        <div key={item.id} className={item.importance}>
-          <div className="Calendar-events-title">{item.title}</div>
-          <div className="Calendar-events-time">
-            {item.timeRange.startTime} - {item.timeRange.endTime}
-          </div>
-        </div>
-      ));
-    }
-    return <div></div>;
-  };
-
-  // const addEvent = (e) => {
-  //     e.preventDefault();
-  //     console.log('hello world');
-  // }
+    dispatch(eventsActions.getEvents(1, props.year, props.month + 1));
+  }, [props.month, props.year]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -47,22 +25,32 @@ const CalendarEvents = (selectedDate) => {
   };
 
   return (
-    <div className={"Calendar-events"}>
+    <div class="Calendar-events">
       <span id="Calendar-events-header">
-        EVENTS {selectedDate.selectedDate}
+        EVENTS - {props.day} {MONTHS[props.month]} {props.year}
       </span>
-      {/* <Link to="/addEvent" id="button_add">add event</Link> */}
       <Button
         color="primary"
         fullWidth
         variant="contained"
-        className="LoginForm__button"
+        class="events__button"
         onClick={handleClickOpen}
       >
         ADD EVENT
       </Button>
       <AddEvent open={open} handleClose={handleClose} />
-      {getData()}
+
+      {Object.values(items).map((item) => {
+        console.log(item.date.day, props.day, props.month + 1, props.year);
+        if (item.date.day == props.day) {
+          return <div key={item.id} class={item.importance}>
+            <div class="Calendar-events-title">{item.title}</div>
+            <div class="Calendar-events-time">
+              {item.timeRange.startTime} - {item.timeRange.endTime}
+            </div>
+          </div>
+        }
+      })}
     </div>
   );
 };

@@ -10,8 +10,6 @@ import FormGroup from "@material-ui/core/FormGroup";
 import { useForm, Controller } from "react-hook-form";
 // import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
-// import { ADD_EVENT } from "../actions/actionTypes"
-// import * as obj from '../../data/index.json';
 
 
 const importances = [

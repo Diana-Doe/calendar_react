@@ -13,9 +13,13 @@
     ],
     "events": [
         {
-            "id": "1",
-            "userId": "1",
-            "date": "2021-5-10",
+            "id": "e1",
+            "userId": 1,
+            "date": {
+                "year": "2021",
+                "month": "5",
+                "day": "10"
+            },
             "title": "Super Event 2021",
             "timeRange": {
                 "startTime": "14:00",
@@ -24,9 +28,13 @@
             "importance": "Medium"
         },
         {
-            "id": "2",
-            "userId": "1",
-            "date": "2021-5-10",
+            "id": "e2",
+            "userId": 1,
+            "date": {
+                "year": "2021",
+                "month": "7",
+                "day": "10"
+            },
             "title": "Shashlyk",
             "timeRange": {
                 "startTime": "14:00",
@@ -35,9 +43,13 @@
             "importance": "High"
         },
         {
-            "id": "3",
-            "userId": "1",
-            "date": "2021-5-10",
+            "id": "e3",
+            "userId": 2,
+            "date": {
+                "year": "2021",
+                "month": "5",
+                "day": "10"
+            },
             "title": "Yroku",
             "timeRange": {
                 "startTime": "10:00",
@@ -46,13 +58,17 @@
             "importance": "Low"
         },
         {
-            "id": "4",
-            "userId": "2",
-            "date": "2021-5-12",
-            "title": "Super Event 2021",
+            "id": "e4",
+            "userId": 1,
+            "date": {
+                "year": "2021",
+                "month": "5",
+                "day": "15"
+            },
+            "title": "Yroku",
             "timeRange": {
-                "startTime": "14:00",
-                "endTime": "16:00"
+                "startTime": "10:00",
+                "endTime": "18:00"
             },
             "importance": "Medium"
         }

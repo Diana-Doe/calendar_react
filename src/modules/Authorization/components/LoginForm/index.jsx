@@ -34,12 +34,16 @@ const theme = createMuiTheme({ palette: { primary: yellow } });
 function LoginButton(props) {
   console.log("login props id ", props.id);
   let history = useHistory();
+  const dispatch = useDispatch();
 
-  function loginHandler(props) {
-    const id = props.id;
-    const error = props?.errors?.password;
+  function loginHandler() {
+    const { id, errors } = props;
+    const error = errors?.password;
     console.log(error);
+    dispatch(usersActions.loginUser(1));
+
     if (id !== "-1" && error === "") {
+      dispatch(usersActions.loginUser(id));
       history.replace("/mycalendar/" + id);
     }
   }
@@ -47,9 +51,7 @@ function LoginButton(props) {
   return (
     <button
       className="LoginForm__button"
-      onClick={() => {
-        loginHandler(props);
-      }}
+      onClick={loginHandler}
     >
       Log in
     </button>
@@ -187,15 +189,15 @@ export default class LoginForm extends React.Component {
                   ...this.state.errors,
                   password: "Incorrect password",
                 },
+                id: "-1",
+                password: "-1"
               });
-              this.setState({ id: "-1" });
-              this.setState({ password: "-1" });
             } else {
-              this.setState({ errors: { ...this.state.errors, password: "" } });
-
-              this.setState({ id: this.userid });
-
-              this.setState({ password: this.userpass });
+              this.setState({ 
+                errors: { ...this.state.errors, password: "" },
+                id: this.userid,
+                password: this.userpass
+               });
             }
           }
         }
@@ -213,6 +215,7 @@ export default class LoginForm extends React.Component {
   };
 
   render() {
+    console.log('ssssss', this.state)
     return (
       <form onSubmit={this.onSubmit}>
         <div>
