@@ -23,3 +23,13 @@ export const getEventById = (id) => dispatch => {
             })
         })
 }
+
+export const postEvent = (data) => (dispatch) => {
+    return eventsApi.postEvent(data)
+        .then(() => {
+            dispatch({
+                type: actionTypes.ADD_EVENT,
+                payload: { data }
+            })
+        })
+}

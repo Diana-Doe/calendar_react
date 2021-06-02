@@ -8,9 +8,10 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import FormGroup from "@material-ui/core/FormGroup";
 import { useForm, Controller } from "react-hook-form";
-// import { useDispatch } from "react-redux";
-import PropTypes from "prop-types";
-
+import React from "react";
+import { useDispatch } from "react-redux";
+import { eventsActions } from "../../store/actions";
+import { v4 as uuidv4 } from "uuid";
 
 const importances = [
     {
@@ -29,13 +30,35 @@ const importances = [
 
 
 const AddEvent = ({ open, handleClose }) => {
+    const dispatch = useDispatch();
     const { control, handleSubmit, getValues, errors } = useForm();
-    // const dispatch = useDispatch();
+    const user = 1;
 
     const onSubmit = () => {
         if (!errors) {
             const values = getValues();
-            // dispatch({ type: ADD_EVENT, payload: values });
+            const start_time = values.start_time.split("T");
+            values.date = start_time[0].split("-");
+            values.start_time = start_time[1];
+            values.user = user;
+
+            dispatch(
+                eventsActions.postEvent({
+                    id: uuidv4(),
+                    userId: values.user,
+                    date: {
+                        year: parseInt(values.date[0]),
+                        month: parseInt(values.date[1]),
+                        day: parseInt(values.date[2]),
+                    },
+                    title: values.event_name,
+                    timeRange: {
+                        startTime: values.start_time,
+                        endTime: values.end_time,
+                    },
+                    importance: values.importance,
+                })
+            );
 
             handleClose();
         }
@@ -159,11 +182,6 @@ const AddEvent = ({ open, handleClose }) => {
             </form>
         </Dialog>
     );
-};
-
-AddEvent.propTypes = {
-    open: PropTypes.bool.isRequired,
-    handleClose: PropTypes.func.isRequired,
 };
 
 export default AddEvent;

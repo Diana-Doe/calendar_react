@@ -1,49 +1,62 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import _ from "lodash";
 import "./styles.css";
 import { DAY_NAMES } from '../constants';
 import { getCalendarArray } from '../helper';
+import { eventsActions } from "../../../../store/actions";
+import { eventsSelectors } from "../../../../store/selectors";
 
 
-class CalendarBody extends Component {
+const CalendarBody = (props) => {
+    const { month, year } = props;
+    const items = useSelector(eventsSelectors.getAllEvents);
+    const dispatch = useDispatch();
+    const user = 1;
+  
+    useEffect(() => {
+      dispatch(eventsActions.getEvents(user, year, month + 1));
+    }, [props.month, props.year]);
 
-    get calendarArray() {
-        const { month, year } = this.props;
-        return getCalendarArray(month, year);
-    }
-
-    renderDayNames() {
+    const renderDayNames = () => {
         return <div>{_.map(DAY_NAMES, (day, i) => <span key={i} className={"Calendar-body__day-name"}>{day}</span>)}</div>
     }
 
-    renderCalendarBody() {
+    const renderCalendarBody = () => {
+        const days = Object.values(items).map((item) => item.date.day);
+        let calendar = getCalendarArray(month, year);
+        for (var i = 0; i < calendar.length; i++) {
+            for (var j = 0; j < 7; j++) {
+                if ( ( calendar[i][j][1] === "" ) && ( days.includes(calendar[i][j][0]) ) ) {
+                    calendar[i][j][1] = "Calendar-body__date_point";
+                }
+            }
+        }
+
         return <div className={"Calendar-body__month"}>
-            {_.map(this.calendarArray, (w, i) =>
+            {_.map(calendar, (w, i) =>
                 <div key={i.toString()} className={"Calendar-body__week"}>
                     {_.map(w, (d, i) =>
-                        <div key={i.toString()} onClick={this.props.onDayClick(d[0])} className={`Calendar-body__date ${d[1]}`}>{d[0]}</div>)
+                        <div key={i.toString()} onClick={props.onDayClick(d[0])} className={`Calendar-body__date ${d[1]}`}>{d[0]}</div>)
                     }
                 </div>)
             }
         </div>;
     }
 
-    render() {
-        return <div className={"Calendar-body"}>
-            {this.renderDayNames()}
-            {this.renderCalendarBody()}
+    return (
+        <div className={"Calendar-body"}>
+            {renderDayNames()}
+            {renderCalendarBody()}
             <button
-                // color="primary"
-                fullWidth
                 variant="contained"
-                class="today__button"
-                onClick={this.props.onToday}
+                className="today__button"
+                onClick={props.onToday}
             >
                 TODAY
-            </button>
+        </button>
         </div>
-    }
-
+    )
 }
 
 export default CalendarBody;
