@@ -2,13 +2,12 @@ import React from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-import LoginView from "./views/LoginView/index.jsx";
-import Layout from "./views/Calendar/index.jsx";
+import LoginView from "./views/LoginView";
+import Layout from "./views/Calendar";
+import Home from "./views/Home";
 
 import { store } from "./store";
 import "./style.css";
-
-const Home = () => <h1>Welcome to calendar!</h1>;
 
 const App = () => (
   <Provider store={store}>

@@ -29,12 +29,12 @@ const importances = [
 ];
 
 
-const AddEvent = ({ open, handleClose }) => {
+const AddEvent = ({ open, handleClose, month, year }) => {
     const dispatch = useDispatch();
     const { control, handleSubmit, getValues, errors } = useForm();
     const user = 1;
 
-    const onSubmit = () => {
+    const onSubmit = ()  => {
         if (!errors) {
             const values = getValues();
             const start_time = values.start_time.split("T");
@@ -57,7 +57,7 @@ const AddEvent = ({ open, handleClose }) => {
                         endTime: values.end_time,
                     },
                     importance: values.importance,
-                })
+                }, month, year)
             );
 
             handleClose();

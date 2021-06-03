@@ -13,9 +13,9 @@ const CalendarBody = (props) => {
     const items = useSelector(eventsSelectors.getAllEvents);
     const dispatch = useDispatch();
     const user = 1;
-  
+
     useEffect(() => {
-      dispatch(eventsActions.getEvents(user, year, month + 1));
+        dispatch(eventsActions.getEvents(user, year, month + 1));
     }, [props.month, props.year]);
 
     const renderDayNames = () => {
@@ -27,7 +27,7 @@ const CalendarBody = (props) => {
         let calendar = getCalendarArray(month, year);
         for (var i = 0; i < calendar.length; i++) {
             for (var j = 0; j < 7; j++) {
-                if ( ( calendar[i][j][1] === "" ) && ( days.includes(calendar[i][j][0]) ) ) {
+                if ((calendar[i][j][1] === "") && (days.includes(calendar[i][j][0]))) {
                     calendar[i][j][1] = "Calendar-body__date_point";
                 }
             }
@@ -36,9 +36,12 @@ const CalendarBody = (props) => {
         return <div className={"Calendar-body__month"}>
             {_.map(calendar, (w, i) =>
                 <div key={i.toString()} className={"Calendar-body__week"}>
-                    {_.map(w, (d, i) =>
-                        <div key={i.toString()} onClick={props.onDayClick(d[0])} className={`Calendar-body__date ${d[1]}`}>{d[0]}</div>)
-                    }
+                    {_.map(w, (d, i) => {
+                        if (d[1] === "Calendar-body__date_disabled") {
+                            return <div key={i.toString()} className={`Calendar-body__date Calendar-body__date_disabled`}>{d[0]}</div>
+                        }
+                        return <div key={i.toString()} onClick={props.onDayClick(d[0])} className={`Calendar-body__date ${d[1]}`}>{d[0]}</div>
+                    })}
                 </div>)
             }
         </div>;

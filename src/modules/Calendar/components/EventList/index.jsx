@@ -20,8 +20,13 @@ const CalendarEvents = (props) => {
     setOpen(true);
   };
 
-  const handleClose = () => {
+  const handleClose = ()  => {
     setOpen(false);
+  };
+
+  const removeEvent = (id) => (e) => {
+    e.preventDefault();
+    dispatch(eventsActions.deleteEvent(id));
   };
 
   return (
@@ -34,10 +39,10 @@ const CalendarEvents = (props) => {
         className="events__button"
         onClick={handleClickOpen}
       >
-      ADD EVENT
+        ADD EVENT
       </button>
 
-      <AddEvent open={open} handleClose={handleClose} />
+      <AddEvent open={open} handleClose={handleClose} month={props.month} year={props.year} />
 
       {Object.values(items).map((item) => {
         if (item.date.day == props.day) {
@@ -46,6 +51,13 @@ const CalendarEvents = (props) => {
             <div className="Calendar-events-time">
               {item.timeRange.startTime} - {item.timeRange.endTime}
             </div>
+            <button
+              variant="contained"
+              className="remove__button"
+              onClick={removeEvent(item.id)}
+            >
+              -
+            </button>
           </div>
         }
       })}

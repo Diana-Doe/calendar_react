@@ -9,6 +9,10 @@
       "id": 2,
       "email": "test1@test",
       "password": "111"
+    },
+    {
+      "data": "{\"id\":-902166845,\"email\":\"test4@test.com\",\"password\":\"111\",\"name\":\"default\",\"surname\":\"default\"}",
+      "id": 3
     }
   ],
   "events": [
@@ -58,21 +62,6 @@
       "importance": "Low"
     },
     {
-      "id": "e4",
-      "userId": 1,
-      "date": {
-        "year": 2021,
-        "month": 5,
-        "day": 15
-      },
-      "title": "ВЕБ",
-      "timeRange": {
-        "startTime": "10:00",
-        "endTime": "18:00"
-      },
-      "importance": "Medium"
-    },
-    {
       "id": "69ee9e3d-75af-4198-b5f9-13c981a36efd",
       "userId": 1,
       "date": {
@@ -101,6 +90,96 @@
         "endTime": "15:00"
       },
       "importance": "Medium"
+    },
+    {
+      "id": "8339280b-5a35-4c93-8119-24e62151b9e4",
+      "userId": 1,
+      "date": {
+        "year": 2021,
+        "month": 6,
+        "day": 3
+      },
+      "title": "Медитація",
+      "timeRange": {
+        "startTime": "02:00",
+        "endTime": "12:00"
+      },
+      "importance": "Low"
+    },
+    {
+      "id": "2101c64a-f301-4e22-9ff6-b00f3b011e7f",
+      "userId": 1,
+      "date": {
+        "year": 2021,
+        "month": 6,
+        "day": 3
+      },
+      "title": "Сон",
+      "timeRange": {
+        "startTime": "02:04",
+        "endTime": "12:22"
+      },
+      "importance": "High"
+    },
+    {
+      "id": "71b0e362-a947-408b-a5ce-76ea06df79ff",
+      "userId": 1,
+      "date": {
+        "year": 2021,
+        "month": 6,
+        "day": 11
+      },
+      "title": "Психолог",
+      "timeRange": {
+        "startTime": "10:00",
+        "endTime": "15:00"
+      },
+      "importance": "High"
+    },
+    {
+      "id": "5666a2f8-dd76-4638-809e-cad2b650363a",
+      "userId": 1,
+      "date": {
+        "year": 2021,
+        "month": 6,
+        "day": 7
+      },
+      "title": "веб",
+      "timeRange": {
+        "startTime": "18:09",
+        "endTime": "18:13"
+      },
+      "importance": "Medium"
+    },
+    {
+      "id": "87dd6144-2514-4d4e-bb92-7345d2f43e92",
+      "userId": 1,
+      "date": {
+        "year": 2021,
+        "month": 7,
+        "day": 1
+      },
+      "title": "Camp",
+      "timeRange": {
+        "startTime": "18:24",
+        "endTime": "22:24"
+      },
+      "importance": "High"
+    },
+    {
+      "id": "ea203798-8f2f-4d25-8213-5fb213fdc6ae",
+      "userId": 1,
+      "date": {
+        "year": 2021,
+        "month": 6,
+        "day": 3
+      },
+      "title": "Party",
+      "timeRange": {
+        "startTime": "20:41",
+        "endTime": "23:41"
+      },
+      "importance": "High"
     }
   ]
 }

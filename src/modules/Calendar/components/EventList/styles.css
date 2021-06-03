@@ -64,3 +64,16 @@
     background-color: white;
     color:#b78bff;
 }
+
+.remove__button {
+    height: 25px;
+    width: 25px;
+    background-color: #ff3c3c;
+    color: white;
+    font-size: 20px;
+    float: right;
+    /* margin-left: 250px; */
+    border-radius: 50%;
+    cursor: pointer;
+    border: 0px;
+}

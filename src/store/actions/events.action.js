@@ -1,7 +1,7 @@
 import * as actionTypes from '../actionTypes';
 import { eventsApi } from '../api';
 
-export const getEvents = (userId, year, month) => dispatch => {
+export const getEvents = (userId, year, month) => (dispatch) => {
     return eventsApi.getEvents(userId, year, month)
         .then((res) => {
             dispatch({
@@ -14,7 +14,7 @@ export const getEvents = (userId, year, month) => dispatch => {
         })
 }
 
-export const getEventById = (id) => dispatch => {
+export const getEventById = (id) => (dispatch) => {
     return eventsApi.getEventById(id)
         .then(data => {
             dispatch({
@@ -22,14 +22,33 @@ export const getEventById = (id) => dispatch => {
                 payload: { id, data }
             })
         })
+        .catch(e => {
+            console.error(e);
+        })
 }
 
-export const postEvent = (data) => (dispatch) => {
+export const postEvent = (data, month, year) => (dispatch) => {
     return eventsApi.postEvent(data)
         .then(() => {
             dispatch({
                 type: actionTypes.ADD_EVENT,
-                payload: { data }
+                payload: { data, month, year }
             })
+        })
+        .catch(e => {
+            console.error(e);
+        })
+}
+
+export const deleteEvent = (id) => (dispatch) => {
+    return eventsApi.deleteEvent(id)
+        .then(() => {
+            dispatch({
+                type: actionTypes.REMOVE_EVENT,
+                payload: { id }
+            })
+        })
+        .catch(e => {
+            console.error(e);
         })
 }
