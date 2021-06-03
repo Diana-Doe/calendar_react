@@ -10,9 +10,7 @@ export default (state = initialState, action) => {
         }
         case actionTypes.ADD_EVENT: {
             const { data, month, year } = action.payload;
-            console.log(data);
-            console.log(month, year);
-            if ( (month == data.date.month) && (year === data.date.year) ) {
+            if ( (month + 1 === data.date.month) && (year === data.date.year) ) {
                 return [
                     ...state,
                     data

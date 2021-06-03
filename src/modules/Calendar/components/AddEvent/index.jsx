@@ -10,7 +10,7 @@ import FormGroup from "@material-ui/core/FormGroup";
 import { useForm, Controller } from "react-hook-form";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { eventsActions } from "../../store/actions";
+import { eventsActions } from "../../../../store/actions";
 import { v4 as uuidv4 } from "uuid";
 
 const importances = [

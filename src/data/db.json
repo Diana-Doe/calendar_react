@@ -137,21 +137,6 @@
       "importance": "High"
     },
     {
-      "id": "5666a2f8-dd76-4638-809e-cad2b650363a",
-      "userId": 1,
-      "date": {
-        "year": 2021,
-        "month": 6,
-        "day": 7
-      },
-      "title": "веб",
-      "timeRange": {
-        "startTime": "18:09",
-        "endTime": "18:13"
-      },
-      "importance": "Medium"
-    },
-    {
       "id": "87dd6144-2514-4d4e-bb92-7345d2f43e92",
       "userId": 1,
       "date": {
@@ -178,6 +163,66 @@
       "timeRange": {
         "startTime": "20:41",
         "endTime": "23:41"
+      },
+      "importance": "High"
+    },
+    {
+      "id": "3460058b-2f53-4abb-8115-e80a0e75d9ff",
+      "userId": 1,
+      "date": {
+        "year": 2021,
+        "month": 6,
+        "day": 18
+      },
+      "title": "Реколекції",
+      "timeRange": {
+        "startTime": "10:00",
+        "endTime": "22:00"
+      },
+      "importance": "Medium"
+    },
+    {
+      "id": "4d753329-00a7-47ae-b0bf-3a459ec3ae04",
+      "userId": 1,
+      "date": {
+        "year": 2021,
+        "month": 6,
+        "day": 19
+      },
+      "title": "Реколекції",
+      "timeRange": {
+        "startTime": "10:00",
+        "endTime": "22:00"
+      },
+      "importance": "Medium"
+    },
+    {
+      "id": "1e9e99f1-40e4-4f16-9062-bf26663d308d",
+      "userId": 1,
+      "date": {
+        "year": 2021,
+        "month": 6,
+        "day": 30
+      },
+      "title": "Camp",
+      "timeRange": {
+        "startTime": "00:09",
+        "endTime": "00:14"
+      },
+      "importance": "High"
+    },
+    {
+      "id": "637cda79-f0cb-471f-a2b8-c03d665059bc",
+      "userId": 1,
+      "date": {
+        "year": 2021,
+        "month": 6,
+        "day": 25
+      },
+      "title": "Морозиво",
+      "timeRange": {
+        "startTime": "00:45",
+        "endTime": "00:50"
       },
       "importance": "High"
     }

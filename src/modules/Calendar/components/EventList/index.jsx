@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./styles.css";
-import AddEvent from "../../../AddEvent";
+import AddEvent from "../AddEvent";
 import { eventsActions } from "../../../../store/actions";
 import { eventsSelectors } from "../../../../store/selectors";
 import { MONTHS } from "../constants";
@@ -14,7 +14,7 @@ const CalendarEvents = (props) => {
 
   useEffect(() => {
     dispatch(eventsActions.getEvents(user, props.year, props.month + 1));
-  }, [props.month, props.year, open]);
+  }, [props.month, props.year]);
 
   const handleClickOpen = () => {
     setOpen(true);
