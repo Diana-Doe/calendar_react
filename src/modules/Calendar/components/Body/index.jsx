@@ -1,22 +1,15 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import _ from "lodash";
 import "./styles.css";
 import { DAY_NAMES } from '../constants';
 import { getCalendarArray } from '../helper';
-import { eventsActions } from "../../../../store/actions";
 import { eventsSelectors } from "../../../../store/selectors";
 
 
 const CalendarBody = (props) => {
     const { month, year } = props;
     const items = useSelector(eventsSelectors.getAllEvents);
-    const dispatch = useDispatch();
-    const user = 1;
-
-    useEffect(() => {
-        dispatch(eventsActions.getEvents(user, year, month + 1));
-    }, [props.month, props.year]);
 
     const renderDayNames = () => {
         return <div>{_.map(DAY_NAMES, (day, i) => <span key={i} className={"Calendar-body__day-name"}>{day}</span>)}</div>

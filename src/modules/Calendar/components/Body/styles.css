@@ -63,5 +63,6 @@
 
 .Calendar-body__date_point {
     margin-top: 2px;
+    margin-bottom: 3px;
     border: 1px solid #9557f9;
 }

@@ -225,6 +225,21 @@
         "endTime": "00:50"
       },
       "importance": "High"
+    },
+    {
+      "id": "0631af90-5de3-4a03-ab82-09b8d2861d5d",
+      "userId": 1,
+      "date": {
+        "year": 2021,
+        "month": 6,
+        "day": 16
+      },
+      "title": "сістер ДН",
+      "timeRange": {
+        "startTime": "00:00",
+        "endTime": "23:59"
+      },
+      "importance": "High"
     }
   ]
 }
