@@ -1,8 +1,8 @@
 import * as actionTypes from '../actionTypes';
 import { usersApi } from '../api';
 
-export const loginUser = (id) => dispatch => {
-    return usersApi.loginUser(id)
+export const loginUser = (password, email) => (dispatch) => {
+    return usersApi.loginUser(password, email)
         .then(res => {
             dispatch({
                 type: actionTypes.LOGIN_USER,
@@ -17,10 +17,21 @@ export const loginUser = (id) => dispatch => {
 
 export const registerUser = (data) => (dispatch) => {
     return usersApi.registerUser(data)
-        .then(() => {
+        .catch(e => {
+            console.error(e);
+        })
+}
+
+export const checkEmail = (email) => (dispatch) => {
+    return usersApi.checkEmail(email)
+        .then(res => {
             dispatch({
-                type: actionTypes.REGISTER_USER,
-                payload: { data }
+                type: actionTypes.LOGIN_USER,
+                payload: { data: res.data }
             })
         })
+        .catch(e => {
+            console.error(e);
+        })
+    
 }

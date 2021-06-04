@@ -11,8 +11,14 @@
       "password": "111"
     },
     {
-      "data": "{\"id\":-902166845,\"email\":\"test4@test.com\",\"password\":\"111\",\"name\":\"default\",\"surname\":\"default\"}",
-      "id": 3
+      "id": "ddf6cc80-b883-4c27-a3ae-d68ca9793369",
+      "email": "a@a.a",
+      "password": "a"
+    },
+    {
+      "id": "dfc2dfbb-e34b-4647-a333-945681a1bd72",
+      "email": "1@1.com",
+      "password": "1"
     }
   ],
   "events": [

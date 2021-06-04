@@ -1,253 +1,189 @@
 import { useHistory } from "react-router-dom";
-import { createMuiTheme } from "@material-ui/core/styles";
-import { useDispatch } from "react-redux";
-import yellow from "@material-ui/core/colors/yellow";
+import { useSelector, useDispatch } from "react-redux";
+import { useForm, Controller } from "react-hook-form";
+import { v4 as uuidv4 } from "uuid";
+
+import FormGroup from "@material-ui/core/FormGroup";
+
+import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
 
 import React from "react";
 
 import * as obj from "../../../../data/users.json";
 import "./styles.css";
 import { usersActions } from "../../../../store/actions";
+import { usersSelectors } from "../../../../store/selectors";
 
-function stringToHash(string) {
-  var hash = 0;
 
-  if (string.length === 0) return hash;
-  var char = "";
 
-  for (let i = 0; i < string.length; i++) {
-    char = string.charCodeAt(i);
-    hash = (hash << 5) - hash + char;
-    hash = hash & hash;
+
+
+const LoginForm = () => {
+  const items = useSelector(usersSelectors.getUser);
+  const { control, handleSubmit, getValues, errors } = useForm();
+  const dispatch = useDispatch();
+  let history = useHistory();
+
+  let chooseButton = 0;
+
+  const validateEmail = (email) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(String(email).toLowerCase());
+  }
+  const LoginButton = (values) => {
+  
+    dispatch(usersActions.loginUser(values.password, values.email));
+    // items = useSelector(usersSelectors.getUser);
+    console.log("items 1:", items);
+    if (items !== null) {
+      history.replace("/mycalendar/" + items);
+    } 
+    else {
+      console.log("ERROR: there is no such user!! >:(");
+    }
+}
+
+  const RegisterButton = (values) => {
+            dispatch(usersActions.checkEmail(values.email));
+        // items = useSelector(usersSelectors.getUser);
+        console.log("items:", items);
+
   }
 
-  return hash;
-}
-
-function validateEmail(email) {
-  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return re.test(String(email).toLowerCase());
-}
-
-const theme = createMuiTheme({ palette: { primary: yellow } });
-
-function LoginButton(props) {
-  console.log("login props id ", props.id);
-  let history = useHistory();
-  const dispatch = useDispatch();
-
-  function loginHandler() {
-    const { id, errors } = props;
-    const error = errors?.password;
-    console.log(error);
-    dispatch(usersActions.loginUser(1));
-
-    if (id !== "-1" && error === "") {
-      dispatch(usersActions.loginUser(id));
-      history.replace("/mycalendar/" + id);
+  const onSubmit = () => {
+    if (!errors) {
+      const values = getValues();
+      if (chooseButton === 1){
+        // dispatch(usersActions.loginUser(values.password, values.email));
+        // items = useSelector(usersSelectors.getUser);
+        // console.log("items:", items);
+        // if (items !== null) {
+        //   history.replace("/mycalendar/" + items);
+        // } 
+        // else {
+        //   console.log("ERROR: there is no such user!! >:(");
+        // }
+        LoginButton(values);
+        console.log("items in ", items)
+        if (items === null) {
+          if (validateEmail(values.email)) {
+            const id = uuidv4();
+             dispatch(
+                usersActions.registerUser({
+                    id: id,
+                    email: values.email,
+                    password: values.password
+                })
+            );
+            history.replace("/mycalendar/" + id);
+          }
+          else {
+            console.log("ERROR: email is invalid");
+          }
+        } 
+        else {
+          console.log("ERROR: there is such email!! >:(");
+        }
+      } 
+      else {
+        // dispatch(usersActions.checkEmail(values.email));
+        // items = useSelector(usersSelectors.getUser);
+        // console.log("items:", items);
+        // if (items === null) {
+        //   if (validateEmail(values.email)) {
+        //     const id = uuidv4();
+        //      dispatch(
+        //         usersActions.registerUser({
+        //             id: id,
+        //             email: values.email,
+        //             password: values.password
+        //         })
+        //     );
+        //     history.replace("/mycalendar/" + id);
+        //   }
+        //   else {
+        //     console.log("ERROR: email is invalid");
+        //   }
+        // } 
+        // else {
+        //   console.log("ERROR: there is such email!! >:(");
+        // }
+        RegisterButton(values);
+      }
     }
   }
 
+ 
   return (
-    <button
-      className="LoginForm__button"
-      onClick={loginHandler}
-    >
-      Log in
-    </button>
-  );
-}
-
-function RegisterButton(props) {
-  let history = useHistory();
-  const dispatch = useDispatch();
-
-  const registerHandler = () => {
-    if (validateEmail(props.email) === false) {
-      return (
-        <button
-          className="LoginForm__button"
-          onClick={() => {
-            console.log("can not register1");
-          }}
-        >
-          Register
-        </button>
-      );
-    }
-
-    for (let m in obj.default) {
-      if (obj.default[m].email === props.email) {
-        return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+         <FormGroup>
+              <Controller
+                name="email"
+                control={control}
+                render={({
+                    field: { onChange, value },
+                    fieldState: { error },
+                }) => (
+                    <TextField
+                        label="Email"
+                        margin="dense"
+                        value={value}
+                        onChange={onChange}
+                        error={!!error}
+                        helperText={error ? error.message : null}
+                    />
+                )}
+                rules={{ required: "Email required" }}
+             />
+          </FormGroup>
+          <FormGroup>
+              <Controller
+                name="password"
+                control={control}
+                render={({
+                    field: { onChange, value },
+                    fieldState: { error },
+                }) => (
+                    <TextField
+                        label="Password"
+                        margin="dense"
+                        type="password"
+                        value={value}
+                        onChange={onChange}
+                        error={!!error}
+                        helperText={error ? error.message : null}
+                    />
+                )}
+                rules={{ required: "Password required" }}
+             />
+          </FormGroup>
+        </Grid>
+        <Grid item xs={12}>
           <button
-            className="LoginForm__button"
-            onClick={() => {
-              console.log("can not register2");
-            }}
+            className = "LoginForm__button"
+            type="submit"
+            onClick={() => (chooseButton = 1)}
+            variant="contained"
+          >
+            Log in
+          </button>
+          
+          <button
+            className = "LoginForm__button"
+            type="submit"
+            onClick={() => (chooseButton = 2)}
+            variant="contained"
           >
             Register
           </button>
-        );
-      }
-    }
-
-    const id = stringToHash(props.email);
-
-    dispatch(
-      usersActions.registerUser({
-        id: id,
-        email: props.email,
-        password: props.password,
-        name: "default",
-        surname: "default",
-      })
-    );
-
-    // obj.default.push({
-    //   id: id,
-    //   email: props.email,
-    //   password: props.password,
-    //   name: "default",
-    //   surname: "default",
-    // });
-
-    console.log("registered");
-    console.log(obj);
-
-    JSON.stringify();
-
-    history.replace("/mycalendar/" + id);
-  };
-
-  return (
-    <button className="LoginForm__button" onClick={registerHandler}>
-      Register
-    </button>
+        </Grid>
+      </Grid>
+    </form>
   );
-}
+};
 
-export default class LoginForm extends React.Component {
-  constructor() {
-    super();
-
-    this.userid = "-1";
-    this.userpass = "-1";
-
-    this.state = JSON.parse(window.localStorage.getItem("state")) || {
-      email: "",
-      id: "-1",
-      password: "-1",
-      errors: {
-        email: "",
-        id: "",
-        password: "",
-      },
-    };
-  }
-
-  setState(state) {
-    window.localStorage.setItem("state", JSON.stringify(state));
-    super.setState(state);
-  }
-
-  handleChange(ev) {
-    this.setState({
-      [ev.target.name]: ev.target.value,
-    });
-  }
-
-  validate(ev) {
-    const { name, value } = ev.target;
-    switch (name) {
-      case "email":
-        {
-          let isFound = false;
-          for (let m in obj.default) {
-            if (obj.default[m].email === value) {
-              isFound = true;
-              this.setState({ email: value });
-              this.userpass = obj.default[m].password;
-              console.log(this.userpass);
-              this.userid = obj.default[m].id;
-            }
-          }
-          if (!isFound) {
-            this.setState({
-              errors: { ...this.state.errors, email: "Incorrect e-mail" },
-            });
-          } else {
-            this.setState({ errors: { ...this.state.errors, email: "" } });
-          }
-        }
-        break;
-      case "password":
-        {
-          if (this.state.errors.email === "") {
-            if (!(value === this.userpass)) {
-              this.setState({
-                errors: {
-                  ...this.state.errors,
-                  password: "Incorrect password",
-                },
-                id: "-1",
-                password: "-1"
-              });
-            } else {
-              this.setState({ 
-                errors: { ...this.state.errors, password: "" },
-                id: this.userid,
-                password: this.userpass
-               });
-            }
-          }
-        }
-        break;
-    }
-  }
-
-  onSubmit = (event) => {
-    event.preventDefault();
-    const { errors } = this.state;
-    if (errors?.email || errors?.password) {
-      console.log("invalid form");
-    }
-    console.log("submit", this.state, event);
-  };
-
-  render() {
-    console.log('ssssss', this.state)
-    return (
-      <form onSubmit={this.onSubmit}>
-        <div>
-          <label htmlFor="email">email: </label>
-          <input
-            name="email"
-            value={this.state.name}
-            onChange={(e) => this.handleChange(e)}
-            onBlur={(e) => this.validate(e)}
-          />
-          {this.state.errors?.email && <span>{this.state.errors?.email}</span>}
-        </div>
-        <div>
-          <label htmlFor="password">password: </label>
-          <input
-            name="password"
-            type="password"
-            value={this.state.name}
-            onChange={(e) => this.handleChange(e)}
-            onBlur={(e) => this.validate(e)}
-          />
-          {this.state.errors?.password && (
-            <span>{this.state.errors?.password}</span>
-          )}
-        </div>
-        <LoginButton id={this.state.id} errors={this.state.errors} />
-
-        <RegisterButton
-          email={this.state.email}
-          password={this.state.password}
-        />
-      </form>
-    );
-  }
-}
+export default LoginForm;
